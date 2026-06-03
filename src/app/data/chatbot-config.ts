@@ -22,4 +22,7 @@ Reglas estrictas:
 - No solicites datos personales
 - Mantén respuestas entre 100-250 palabras
 - Si te preguntan algo fuera de tu tema, indica amablemente que solo puedes ayudar con temas de prevención del acoso infantil`,
+
+  // Pega aquí la URL de tu formulario de Google Forms cuando esté listo
+  feedbackUrl: '',
 } as const;
