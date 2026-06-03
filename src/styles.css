@@ -29,3 +29,51 @@ body {
 .glass-panel {
   @apply border border-white/10 bg-base-100/70 shadow-2xl shadow-info/5 backdrop-blur;
 }
+
+.assistant-markdown {
+  @apply leading-6 text-base-content/85;
+}
+
+.assistant-markdown :where(p) {
+  @apply my-0;
+}
+
+.assistant-markdown :where(p + p) {
+  @apply mt-3;
+}
+
+.assistant-markdown :where(strong) {
+  @apply font-bold text-info;
+}
+
+.assistant-markdown :where(h1, h2, h3, h4) {
+  @apply mb-2 mt-3 font-bold text-base-content;
+}
+
+.assistant-markdown :where(h1) {
+  @apply text-lg;
+}
+
+.assistant-markdown :where(h2, h3, h4) {
+  @apply text-base;
+}
+
+.assistant-markdown :where(ul) {
+  @apply my-3 list-disc pl-5;
+}
+
+.assistant-markdown :where(ol) {
+  @apply my-3 list-decimal pl-5;
+}
+
+.assistant-markdown :where(li) {
+  @apply my-1 pl-1;
+}
+
+.assistant-markdown :where(a) {
+  @apply text-info underline underline-offset-2;
+}
+
+.assistant-markdown :where(code) {
+  @apply rounded bg-base-300 px-1 py-0.5 text-info;
+}

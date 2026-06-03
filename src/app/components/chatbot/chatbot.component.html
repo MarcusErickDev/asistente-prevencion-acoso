@@ -65,19 +65,19 @@
     }
 
     <!-- Chat messages -->
-    @for (msg of messages; track $index) {
-      @if (msg.role === 'user') {
+    @for (message of messages; track $index) {
+      @if (message.role === 'user') {
         <div class="flex justify-end">
           <div class="max-w-[80%] rounded-2xl rounded-tr-sm bg-info px-4 py-3 text-sm text-info-content shadow-sm">
-            {{ msg.content }}
+            {{ message.content }}
           </div>
         </div>
       } @else {
         <div class="flex justify-start">
           <div class="flex items-start gap-2 max-w-[85%]">
             <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-base-100 text-sm">🛡️</span>
-            <div class="rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 text-sm text-base-content shadow-sm">
-              {{ msg.content }}
+            <div class="assistant-markdown rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 text-sm text-base-content shadow-sm">
+              <markdown [data]="message.content"></markdown>
             </div>
           </div>
         </div>

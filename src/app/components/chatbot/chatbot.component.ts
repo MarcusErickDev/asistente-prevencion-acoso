@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, inject, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { CHATBOT_CONFIG } from '../../data/chatbot-config';
 
@@ -12,7 +13,7 @@ interface Message {
 @Component({
   selector: 'app-chatbot',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownModule],
   templateUrl: './chatbot.component.html',
 })
 export class ChatbotComponent implements AfterViewChecked {
