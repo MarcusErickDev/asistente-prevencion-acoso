@@ -1,7 +1,7 @@
-<div [class.chatbot-modal-overlay]="isFullscreenOpen">
+<div>
 <div
   class="flex flex-col overflow-hidden rounded-[1.5rem] bg-base-200"
-  [class.chatbot-modal-panel]="isFullscreenOpen"
+  [class.chatbot-expanded-panel]="isFullscreenOpen"
   [style.height.px]="isFullscreenOpen ? null : chatHeight"
 >
 
@@ -16,17 +16,19 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <button
-        type="button"
-        (click)="cycleChatSize()"
-        class="btn btn-ghost btn-sm text-base-content/70 hover:text-base-content"
-        [title]="'Tamaño actual: ' + selectedSizeLabel"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M7 4v8m10-8v8M4 16h16m-9-4v8m6-8v8" />
-        </svg>
-        <span class="hidden sm:inline">{{ selectedSizeLabel }}</span>
-      </button>
+      @if (!isFullscreenOpen) {
+        <button
+          type="button"
+          (click)="cycleChatSize()"
+          class="btn btn-ghost btn-sm text-base-content/70 hover:text-base-content"
+          [title]="'Tamaño actual: ' + selectedSizeLabel"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M7 4v8m10-8v8M4 16h16m-9-4v8m6-8v8" />
+          </svg>
+          <span class="hidden sm:inline">{{ selectedSizeLabel }}</span>
+        </button>
+      }
 
       @if (!isFullscreenOpen) {
         <button
@@ -50,7 +52,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12" />
           </svg>
-          <span class="hidden sm:inline">Cerrar</span>
+          <span class="hidden sm:inline">Contraer</span>
         </button>
       }
 

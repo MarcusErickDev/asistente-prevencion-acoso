@@ -78,10 +78,8 @@ body {
   @apply rounded bg-base-300 px-1 py-0.5 text-info;
 }
 
-.chatbot-modal-overlay {
-  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-0 backdrop-blur-sm md:p-6;
-}
-
-.chatbot-modal-panel {
-  @apply h-full w-full rounded-none shadow-2xl shadow-info/10 md:h-[90vh] md:w-[80vw] md:rounded-[1.5rem];
+.chatbot-expanded-panel {
+  height: calc(100vh - 2rem);
+  max-height: calc(100vh - 2rem);
+  @apply w-full shadow-2xl shadow-info/10;
 }
