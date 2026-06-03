@@ -1,6 +1,6 @@
 <section id="asistente" class="section-container">
   <div class="glass-panel overflow-hidden rounded-[2rem]">
-    <div class="p-8 md:p-10">
+    <div class="p-4 md:p-6">
       <div class="mb-8">
         <p class="section-eyebrow">Asistente digital</p>
         <h2 class="section-title">Orientación preventiva y educativa al alcance de la comunidad.</h2>
@@ -10,7 +10,12 @@
           y promover decisiones responsables.
         </p>
       </div>
-      <app-chatbot />
+      <a routerLink="/asistente" class="btn btn-info btn-lg w-full md:hidden">
+        Abrir asistente en pantalla completa
+      </a>
+      <div class="hidden w-full md:block">
+        <app-chatbot />
+      </div>
     </div>
   </div>
 </section>

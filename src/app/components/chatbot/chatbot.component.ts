@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, inject, AfterViewChecked } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, inject, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
@@ -32,6 +32,8 @@ interface ChatSizeOption {
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   private http = inject(HttpClient);
+
+  @Input() fullHeight = false;
 
   history: ChatEntry[] = [];
   currentButtons: FlowButton[] = [];
