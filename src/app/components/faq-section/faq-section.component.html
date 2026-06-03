@@ -1,0 +1,37 @@
+<section id="faq" class="section-container">
+  <div class="mx-auto max-w-3xl text-center">
+    <p class="section-eyebrow">Orientación por perfil</p>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <p class="section-copy mx-auto">
+      Selecciona tu perfil para ver las preguntas más comunes
+    </p>
+  </div>
+
+  <div class="mt-10 flex flex-wrap justify-center gap-3">
+    @for (group of groups; track group.id) {
+      <button
+        type="button"
+        class="btn"
+        [class.btn-info]="activeProfile === group.id"
+        [class.btn-outline]="activeProfile !== group.id"
+        (click)="selectProfile(group.id)"
+      >
+        {{ group.label }}
+      </button>
+    }
+  </div>
+
+  <div class="mx-auto mt-8 max-w-4xl space-y-3">
+    @for (item of activeGroup.items; track item.question; let index = $index) {
+      <div class="collapse collapse-arrow border border-white/10 bg-base-100/80 shadow-lg shadow-info/5">
+        <input type="radio" name="faq-accordion" [checked]="index === 0" />
+        <div class="collapse-title text-base font-semibold text-base-content md:text-lg">
+          {{ item.question }}
+        </div>
+        <div class="collapse-content">
+          <p class="leading-7 text-base-content/75">{{ item.answer }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>

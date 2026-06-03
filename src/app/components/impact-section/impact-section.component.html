@@ -1,0 +1,50 @@
+<section id="impacto" class="section-container">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <div>
+      <p class="section-eyebrow">El problema es real</p>
+      <h2 class="section-title">El acoso infantil no es un rumor. Es una crisis.</h2>
+      <p class="section-copy">
+        Y está ocurriendo ahora mismo, en escuelas y pantallas de todo México.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      @for (stat of stats; track stat.number) {
+        <article class="rounded-3xl border border-info/15 bg-base-100/80 p-6 shadow-xl shadow-info/5">
+          <p class="text-4xl font-extrabold tracking-tight text-info sm:text-5xl">{{ stat.number }}</p>
+          <p class="mt-4 text-sm leading-6 text-base-content/70">{{ stat.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="mt-12 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+    <div class="space-y-6">
+      <p class="text-lg leading-8 text-base-content/75">
+        Los programas tradicionales no siempre llegan a tiempo. Un taller presencial tiene fecha y lugar.
+        Una campaña informativa se olvida. Pero una niña que necesita orientación a las 11 de la noche,
+        un padre que no sabe cómo hablar con su hijo, un docente que detecta algo raro pero no sabe cómo
+        actuar — esos momentos no esperan.
+      </p>
+      <p class="text-lg font-medium leading-8 text-base-content">
+        Por eso construimos este asistente. No para reemplazar a los profesionales, sino para que nadie se
+        quede sin orientación cuando más la necesita. Con inteligencia artificial al servicio de lo que
+        realmente importa: proteger a los niños.
+      </p>
+      <a class="btn btn-info btn-lg" href="#asistente">Conoce al Asistente</a>
+    </div>
+
+    <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-base-100/80 shadow-2xl shadow-info/5">
+      <!-- Para activar el video: reemplaza este placeholder por un iframe de YouTube usando el ID del video en https://www.youtube.com/embed/PEGAR_AQUI_ID_DEL_VIDEO -->
+      <div class="aspect-video bg-base-200">
+        <div class="flex h-full flex-col items-center justify-center p-8 text-center">
+          <span class="text-6xl text-info">▶</span>
+          <p class="mt-4 text-xl font-bold text-base-content">Video próximamente</p>
+          <p class="mt-2 max-w-md text-sm leading-6 text-base-content/60">
+            Una explicación más profunda sobre la problemática del acoso infantil en México
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

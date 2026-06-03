@@ -1,7 +1,12 @@
-<div class="flex flex-col rounded-[1.5rem] bg-base-200 overflow-hidden" style="height: 540px;">
+<div [class.chatbot-modal-overlay]="isFullscreenOpen">
+<div
+  class="flex flex-col overflow-hidden rounded-[1.5rem] bg-base-200"
+  [class.chatbot-modal-panel]="isFullscreenOpen"
+  [style.height.px]="isFullscreenOpen ? null : chatHeight"
+>
 
   <!-- Header -->
-  <div class="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
     <div class="flex items-center gap-3">
       <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-info/15 text-xl">🛡️</span>
       <div>
@@ -9,8 +14,49 @@
         <p class="text-xs text-base-content/50">Orientación educativa · IA</p>
       </div>
     </div>
-    @if (messages.length > 0) {
+
+    <div class="flex items-center gap-2">
       <button
+        type="button"
+        (click)="cycleChatSize()"
+        class="btn btn-ghost btn-sm text-base-content/70 hover:text-base-content"
+        [title]="'Tamaño actual: ' + selectedSizeLabel"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M7 4v8m10-8v8M4 16h16m-9-4v8m6-8v8" />
+        </svg>
+        <span class="hidden sm:inline">{{ selectedSizeLabel }}</span>
+      </button>
+
+      @if (!isFullscreenOpen) {
+        <button
+          type="button"
+          (click)="openFullscreen()"
+          class="btn btn-ghost btn-sm text-base-content/70 hover:text-base-content"
+          title="Expandir"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+          </svg>
+          <span class="hidden sm:inline">Expandir</span>
+        </button>
+      } @else {
+        <button
+          type="button"
+          (click)="closeFullscreen()"
+          class="btn btn-ghost btn-sm text-base-content/70 hover:text-base-content"
+          title="Cerrar"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+          <span class="hidden sm:inline">Cerrar</span>
+        </button>
+      }
+
+      @if (messages.length > 0) {
+      <button
+        type="button"
         (click)="clearConversation()"
         class="btn btn-ghost btn-sm text-base-content/50 hover:text-base-content"
         title="Limpiar conversación"
@@ -19,9 +65,10 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>
-        Limpiar
+        <span class="hidden sm:inline">Limpiar</span>
       </button>
-    }
+      }
+    </div>
   </div>
 
   <!-- Messages -->
@@ -127,4 +174,5 @@
     </div>
   </div>
 
+</div>
 </div>

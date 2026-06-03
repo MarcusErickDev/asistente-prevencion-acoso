@@ -10,6 +10,14 @@ interface Message {
   content: string;
 }
 
+type ChatSize = 'small' | 'medium' | 'large';
+
+interface ChatSizeOption {
+  id: ChatSize;
+  label: string;
+  height: number;
+}
+
 @Component({
   selector: 'app-chatbot',
   standalone: true,
@@ -22,16 +30,46 @@ export class ChatbotComponent implements AfterViewChecked {
   messages: Message[] = [];
   inputText = '';
   isLoading = false;
+  isFullscreenOpen = false;
+  selectedSize: ChatSize = 'medium';
+  readonly sizeOptions: ChatSizeOption[] = [
+    { id: 'small', label: 'Chico', height: 300 },
+    { id: 'medium', label: 'Mediano', height: 500 },
+    { id: 'large', label: 'Grande', height: 700 },
+  ];
   private shouldScroll = false;
   private readonly MAX_MESSAGES = 10;
 
   @ViewChild('messagesContainer') messagesContainer!: ElementRef<HTMLElement>;
+
+  get selectedSizeLabel(): string {
+    return this.currentSize.label;
+  }
+
+  get chatHeight(): number {
+    return this.currentSize.height;
+  }
 
   ngAfterViewChecked(): void {
     if (this.shouldScroll) {
       this.scrollToBottom();
       this.shouldScroll = false;
     }
+  }
+
+  cycleChatSize(): void {
+    const currentIndex = this.sizeOptions.findIndex((option) => option.id === this.selectedSize);
+    const nextIndex = (currentIndex + 1) % this.sizeOptions.length;
+    this.selectedSize = this.sizeOptions[nextIndex].id;
+  }
+
+  openFullscreen(): void {
+    this.isFullscreenOpen = true;
+    this.shouldScroll = true;
+  }
+
+  closeFullscreen(): void {
+    this.isFullscreenOpen = false;
   }
 
   sendMessage(): void {
@@ -88,5 +126,9 @@ export class ChatbotComponent implements AfterViewChecked {
       this.messagesContainer.nativeElement.scrollTop =
         this.messagesContainer.nativeElement.scrollHeight;
     }
+  }
+
+  private get currentSize(): ChatSizeOption {
+    return this.sizeOptions.find((option) => option.id === this.selectedSize) ?? this.sizeOptions[1];
   }
 }
