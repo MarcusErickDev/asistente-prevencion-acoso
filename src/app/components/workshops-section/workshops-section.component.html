@@ -1,0 +1,28 @@
+<section id="talleres" class="section-container">
+  <div class="max-w-3xl">
+    <p class="section-eyebrow">Talleres digitales</p>
+    <h2 class="section-title">Tres recursos en video para aprender, prevenir y actuar.</h2>
+    <p class="section-copy">
+      Cada taller tendrá un video embebido de YouTube. Por ahora se muestran espacios reservados para integrar los enlaces finales.
+    </p>
+  </div>
+
+  <div class="mt-10 grid gap-6 lg:grid-cols-3">
+    @for (workshop of workshops; track workshop.title; let index = $index) {
+      <article class="card glass-panel overflow-hidden">
+        <div class="aspect-video bg-base-200">
+          <div class="flex h-full flex-col items-center justify-center gap-3 p-6 text-center text-base-content/60">
+            <span class="text-4xl">▶️</span>
+            <p class="text-sm font-medium">Placeholder YouTube</p>
+            <p class="text-xs">Insertar iframe del taller {{ index + 1 }}</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="badge badge-info badge-outline">Taller {{ index + 1 }}</div>
+          <h3 class="card-title">{{ workshop.title }}</h3>
+          <p class="text-base-content/70">{{ workshop.description }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

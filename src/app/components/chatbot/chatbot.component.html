@@ -1,0 +1,130 @@
+<div class="flex flex-col rounded-[1.5rem] bg-base-200 overflow-hidden" style="height: 540px;">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+    <div class="flex items-center gap-3">
+      <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-info/15 text-xl">🛡️</span>
+      <div>
+        <p class="font-semibold text-base-content">Asistente Prevención</p>
+        <p class="text-xs text-base-content/50">Orientación educativa · IA</p>
+      </div>
+    </div>
+    @if (messages.length > 0) {
+      <button
+        (click)="clearConversation()"
+        class="btn btn-ghost btn-sm text-base-content/50 hover:text-base-content"
+        title="Limpiar conversación"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+        Limpiar
+      </button>
+    }
+  </div>
+
+  <!-- Messages -->
+  <div #messagesContainer class="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+
+    <!-- Aviso inicial siempre visible -->
+    <div class="rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 text-sm text-base-content/80">
+      <span class="font-semibold text-warning">⚠️ Aviso:</span>
+      Este asistente tiene fines educativos y preventivos. No sustituye atención profesional.
+      En caso de emergencia llama al <span class="font-bold">911</span>.
+    </div>
+
+    <!-- Empty state -->
+    @if (messages.length === 0) {
+      <div class="flex flex-col items-center justify-center gap-4 py-8 text-center text-base-content/40">
+        <span class="text-4xl">💬</span>
+        <p class="text-sm">
+          Puedes preguntar sobre acoso infantil, ciberacoso, señales de alerta o cómo actuar.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <button
+            (click)="inputText = '¿Qué es el ciberacoso?'; sendMessage()"
+            class="badge badge-outline badge-info cursor-pointer hover:bg-info hover:text-info-content transition-colors text-xs py-3 px-3"
+          >
+            ¿Qué es el ciberacoso?
+          </button>
+          <button
+            (click)="inputText = '¿Cuáles son las señales de alerta de acoso?'; sendMessage()"
+            class="badge badge-outline badge-info cursor-pointer hover:bg-info hover:text-info-content transition-colors text-xs py-3 px-3"
+          >
+            Señales de alerta
+          </button>
+          <button
+            (click)="inputText = '¿A quién puedo acudir en México?'; sendMessage()"
+            class="badge badge-outline badge-info cursor-pointer hover:bg-info hover:text-info-content transition-colors text-xs py-3 px-3"
+          >
+            ¿A quién acudir?
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Chat messages -->
+    @for (msg of messages; track $index) {
+      @if (msg.role === 'user') {
+        <div class="flex justify-end">
+          <div class="max-w-[80%] rounded-2xl rounded-tr-sm bg-info px-4 py-3 text-sm text-info-content shadow-sm">
+            {{ msg.content }}
+          </div>
+        </div>
+      } @else {
+        <div class="flex justify-start">
+          <div class="flex items-start gap-2 max-w-[85%]">
+            <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-base-100 text-sm">🛡️</span>
+            <div class="rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 text-sm text-base-content shadow-sm">
+              {{ msg.content }}
+            </div>
+          </div>
+        </div>
+      }
+    }
+
+    <!-- Loading animation -->
+    @if (isLoading) {
+      <div class="flex justify-start">
+        <div class="flex items-start gap-2">
+          <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-base-100 text-sm">🛡️</span>
+          <div class="rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 shadow-sm">
+            <span class="flex gap-1">
+              <span class="h-2 w-2 rounded-full bg-info/60 animate-bounce" style="animation-delay: 0ms;"></span>
+              <span class="h-2 w-2 rounded-full bg-info/60 animate-bounce" style="animation-delay: 150ms;"></span>
+              <span class="h-2 w-2 rounded-full bg-info/60 animate-bounce" style="animation-delay: 300ms;"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Input -->
+  <div class="border-t border-white/10 px-4 py-4">
+    <div class="flex items-center gap-2">
+      <input
+        type="text"
+        [(ngModel)]="inputText"
+        (keydown)="onKeydown($event)"
+        [disabled]="isLoading"
+        placeholder="Escribe tu pregunta..."
+        class="input input-bordered flex-1 bg-base-100 text-sm focus:border-info focus:outline-none"
+        maxlength="500"
+      />
+      <button
+        (click)="sendMessage()"
+        [disabled]="isLoading || !inputText.trim()"
+        class="btn btn-info btn-square"
+        title="Enviar"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>

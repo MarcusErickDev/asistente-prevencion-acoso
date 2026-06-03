@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.section-container {
+  @apply mx-auto w-full max-w-7xl px-6 py-16 sm:py-20 lg:px-8;
+}
+
+.section-eyebrow {
+  @apply text-sm font-semibold uppercase tracking-[0.2em] text-info;
+}
+
+.section-title {
+  @apply mt-3 text-3xl font-bold tracking-tight text-base-content sm:text-4xl;
+}
+
+.section-copy {
+  @apply mt-5 max-w-3xl text-base leading-8 text-base-content/75 sm:text-lg;
+}
+
+.glass-panel {
+  @apply border border-white/10 bg-base-100/70 shadow-2xl shadow-info/5 backdrop-blur;
+}
