@@ -7,6 +7,7 @@ import { FeedbackSectionComponent } from '../../components/feedback-section/feed
 import { HeroSectionComponent } from '../../components/hero-section/hero-section.component';
 import { ImpactSectionComponent } from '../../components/impact-section/impact-section.component';
 import { ProblemSectionComponent } from '../../components/problem-section/problem-section.component';
+import { ThemeToggleComponent } from '../../components/theme-toggle/theme-toggle.component';
 import { WorkshopsSectionComponent } from '../../components/workshops-section/workshops-section.component';
 
 @Component({
@@ -21,6 +22,7 @@ import { WorkshopsSectionComponent } from '../../components/workshops-section/wo
     WorkshopsSectionComponent,
     FeedbackSectionComponent,
     DisclaimerSectionComponent,
+    ThemeToggleComponent,
   ],
   templateUrl: './landing-page.component.html',
 })

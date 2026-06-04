@@ -27,11 +27,15 @@ body {
 }
 
 .glass-panel {
-  @apply border border-white/10 bg-base-100/70 shadow-2xl shadow-info/5 backdrop-blur;
+  @apply border border-base-content/10 bg-base-100/70 shadow-2xl shadow-info/5 backdrop-blur;
 }
 
 .luma-orb {
-  @apply inline-flex items-center justify-center rounded-2xl border border-amber-200/30 bg-gradient-to-br from-amber-200 via-cyan-300 to-violet-400 text-slate-950 shadow-lg shadow-info/20;
+  @apply inline-flex items-center justify-center rounded-2xl border border-warning/30 bg-gradient-to-br from-warning via-info to-secondary text-base-content shadow-lg shadow-info/20;
+}
+
+.disclaimer-warning-title {
+  color: var(--color-warning, var(--fallback-wa, oklch(var(--wa))));
 }
 
 .assistant-markdown {

@@ -9,7 +9,7 @@
 >
 
   <!-- Header -->
-  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-base-content/10 px-5 py-3">
     <div class="flex items-center gap-3">
       <span class="luma-orb h-9 w-9 text-base">✨</span>
       <div>
@@ -61,7 +61,7 @@
         </button>
       }
 
-      <div class="mx-1 h-4 w-px bg-white/10"></div>
+      <div class="mx-1 h-4 w-px bg-base-content/10"></div>
 
       <!-- Reiniciar -->
       <button
@@ -134,7 +134,7 @@
   </div>
 
   <!-- Zona inferior: botones O input según modo -->
-  <div class="border-t border-white/10">
+  <div class="border-t border-base-content/10">
 
     <!-- Botones de flujo guiado (y botones post-IA) -->
     @if (currentButtons.length > 0) {
@@ -145,7 +145,7 @@
             (click)="onButtonClick(btn)"
             class="btn btn-sm rounded-xl transition-colors"
             [class]="btn.next === 'RESTART' || btn.next === 'AI_CONTINUE'
-              ? 'btn-ghost text-base-content/60 hover:text-base-content border border-white/10'
+              ? 'btn-ghost text-base-content/60 hover:text-base-content border border-base-content/10'
               : btn.next === 'AI_MODE'
                 ? 'btn-info'
                 : 'btn-outline btn-info'"

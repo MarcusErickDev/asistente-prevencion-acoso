@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="btn btn-sm border border-base-content/10 bg-base-100/80 text-base-content shadow-lg shadow-info/5 backdrop-blur hover:border-info/40"
+  (click)="toggleTheme()"
+  [attr.aria-label]="nextThemeLabel"
+  [title]="nextThemeLabel"
+>
+  <span aria-hidden="true">{{ icon }}</span>
+  <span class="hidden sm:inline">{{ nextThemeLabel }}</span>
+</button>

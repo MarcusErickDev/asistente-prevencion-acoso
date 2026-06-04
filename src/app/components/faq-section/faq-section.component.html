@@ -23,7 +23,7 @@
 
   <div class="mx-auto mt-8 max-w-4xl space-y-3">
     @for (item of activeGroup.items; track item.question; let index = $index) {
-      <div class="collapse collapse-arrow border border-white/10 bg-base-100/80 shadow-lg shadow-info/5">
+      <div class="collapse collapse-arrow border border-base-content/10 bg-base-100/80 shadow-lg shadow-info/5">
         <input type="radio" name="faq-accordion" [checked]="index === 0" />
         <div class="collapse-title text-base font-semibold text-base-content md:text-lg">
           {{ item.question }}
