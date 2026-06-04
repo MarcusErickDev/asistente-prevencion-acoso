@@ -11,10 +11,10 @@
   <!-- Header -->
   <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
     <div class="flex items-center gap-3">
-      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-info/15 text-lg">🛡️</span>
+      <span class="luma-orb h-9 w-9 text-base">✨</span>
       <div>
-        <p class="font-semibold text-base-content leading-tight">Asistente Prevención</p>
-        <p class="text-xs text-base-content/50">Orientación educativa · IA</p>
+        <p class="font-semibold text-base-content leading-tight">LUMA</p>
+        <p class="text-xs text-base-content/50">Prevención · Orientación segura</p>
       </div>
     </div>
 
@@ -107,7 +107,7 @@
         <!-- Mensaje del bot -->
         <div class="flex justify-start">
           <div class="flex items-start gap-2 max-w-[88%]">
-            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-base-100 text-xs">🛡️</span>
+            <span class="luma-orb mt-0.5 h-6 w-6 shrink-0 text-[10px]">✨</span>
             <div class="assistant-markdown rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 text-sm text-base-content shadow-sm">
               <markdown [data]="entry.text" />
             </div>
@@ -120,7 +120,7 @@
     @if (isLoading) {
       <div class="flex justify-start">
         <div class="flex items-start gap-2">
-          <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-base-100 text-xs">🛡️</span>
+          <span class="luma-orb mt-0.5 h-6 w-6 shrink-0 text-[10px]">✨</span>
           <div class="rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 shadow-sm">
             <span class="flex gap-1">
               <span class="h-2 w-2 rounded-full bg-info/60 animate-bounce" style="animation-delay: 0ms;"></span>

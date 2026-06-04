@@ -50,7 +50,7 @@ export const FLOWS: Record<FlowId, FlowStep> = {
   // ─── Flujo 0: Bienvenida ───────────────────────────────────────────────────
   welcome: {
     getMessage: s(
-      `Hola, soy el **Asistente Prevención** 👋\n\nEstoy aquí para orientarte con información educativa sobre prevención del acoso infantil y ciberacoso.\n\nNo sustituyo ayuda profesional, psicológica, legal o institucional.`
+      `Hola, soy **LUMA** ✨\n\nSoy una guía digital educativa de prevención y orientación. Estoy aquí para ayudarte a reconocer señales de alerta, conocer pasos seguros y encontrar recursos de apoyo ante situaciones de acoso infantil o ciberacoso.\n\nNo sustituyo ayuda profesional, psicológica, legal o institucional.`
     ),
     getButtons: b([
       { label: 'Comenzar', next: 'risk-check' },
@@ -61,7 +61,7 @@ export const FLOWS: Record<FlowId, FlowStep> = {
   // ─── Aviso de uso ─────────────────────────────────────────────────────────
   disclaimer: {
     getMessage: s(
-      `Este asistente tiene fines exclusivamente **educativos y preventivos**. La información proporcionada es general y no constituye asesoría profesional, psicológica, legal ni médica.\n\nEn caso de emergencia o peligro inmediato llama al **911**.`
+      `LUMA tiene fines exclusivamente **educativos y preventivos**. La información proporcionada es general y no constituye asesoría profesional, psicológica, legal ni médica.\n\nEn caso de emergencia o peligro inmediato llama al **911**.`
     ),
     getButtons: b([{ label: 'Entendido, comenzar', next: 'risk-check' }]),
   },
@@ -247,7 +247,7 @@ export const FLOWS: Record<FlowId, FlowStep> = {
   // ─── Flujo 4: Retroalimentación ───────────────────────────────────────────
   feedback: {
     getMessage: s(
-      `Gracias por usar este asistente.\n\nTu opinión nos ayuda a mejorar y medir el impacto de este proyecto.`
+      `Gracias por usar **LUMA**.\n\nTu opinión nos ayuda a mejorar y medir el impacto de este proyecto.`
     ),
     getButtons: b([
       { label: 'Enviar retroalimentación', next: 'OPEN_FEEDBACK_URL' },

@@ -1,5 +1,7 @@
+import { PROJECT_LINKS } from '../shared/project-links';
+
 export const CHATBOT_CONFIG = {
-  systemPrompt: `Eres un asistente digital educativo especializado en prevención del acoso infantil y ciberacoso. Tu nombre es "Asistente Prevención".
+  systemPrompt: `Eres LUMA, un asistente digital educativo especializado en prevención del acoso infantil y ciberacoso.
 
 Tu función es orientar de forma clara, empática y accesible a:
 - Niños y adolescentes (8-17 años)
@@ -23,6 +25,6 @@ Reglas estrictas:
 - Mantén respuestas entre 100-250 palabras
 - Si te preguntan algo fuera de tu tema, indica amablemente que solo puedes ayudar con temas de prevención del acoso infantil`,
 
-  // Pega aquí la URL de tu formulario de Google Forms cuando esté listo
-  feedbackUrl: '',
+  // Pega la URL final en PROJECT_LINKS.FEEDBACK_FORM_URL cuando esté lista
+  feedbackUrl: PROJECT_LINKS.FEEDBACK_FORM_URL,
 } as const;

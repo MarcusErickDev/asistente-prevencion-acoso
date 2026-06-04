@@ -1,19 +1,43 @@
 <section id="asistente" class="section-container">
   <div class="glass-panel overflow-hidden rounded-[2rem]">
     <div class="p-4 md:p-6">
-      <div class="mb-8">
-        <p class="section-eyebrow">Asistente digital</p>
-        <h2 class="section-title">Orientación preventiva y educativa al alcance de la comunidad.</h2>
-        <p class="section-copy">
-          El asistente digital brinda información inicial, recomendaciones preventivas y rutas de orientación
-          para padres, docentes, niñas, niños y adolescentes. Su propósito es apoyar la identificación temprana
-          y promover decisiones responsables.
-        </p>
+      <div class="mb-8 grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
+        <div>
+          <p class="section-eyebrow">LUMA · Asistente digital</p>
+          <h2 class="section-title">Orientación preventiva con LUMA</h2>
+          <p class="section-copy">
+            LUMA funciona como un asistente híbrido: combina rutas guiadas de orientación segura con una
+            sección inteligente para resolver dudas generales, siempre con fines educativos y preventivos.
+          </p>
+          <a href="#chatbot-luma" class="btn btn-info mt-6 hidden md:inline-flex">
+            Iniciar orientación con LUMA
+          </a>
+        </div>
+
+        <article class="rounded-[1.75rem] border border-info/20 bg-base-100/80 p-6 shadow-xl shadow-info/5">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+            <div class="luma-orb h-20 w-20 shrink-0 text-3xl">✨🛡️</div>
+            <!-- Reemplazar el placeholder por imagen real cuando exista: <img src="assets/luma-avatar.png" alt="Avatar de LUMA" class="h-20 w-20 rounded-full object-cover"> -->
+            <div>
+              <div class="badge badge-warning badge-outline mb-3">{{ luma.concept }}</div>
+              <h3 class="text-2xl font-bold text-base-content">Conoce a {{ luma.name }}</h3>
+              <p class="mt-2 text-sm font-medium text-info">{{ luma.phrase }}</p>
+            </div>
+          </div>
+          <p class="mt-5 leading-7 text-base-content/75">
+            LUMA es un asistente digital educativo diseñado para orientar de forma clara, empática y preventiva
+            sobre el acoso infantil y el ciberacoso. Su propósito es ayudarte a reconocer señales de alerta,
+            conocer acciones seguras y encontrar recursos de apoyo.
+          </p>
+          <p class="mt-4 rounded-2xl border border-warning/30 bg-warning/10 p-3 text-sm text-base-content/80">
+            LUMA no sustituye atención psicológica, médica, legal o institucional.
+          </p>
+        </article>
       </div>
-      <a routerLink="/asistente" class="btn btn-info btn-lg w-full md:hidden">
-        Abrir asistente en pantalla completa
+      <a [routerLink]="assistantUrl" class="btn btn-info btn-lg w-full md:hidden">
+        Iniciar orientación con LUMA
       </a>
-      <div class="hidden w-full md:block">
+      <div id="chatbot-luma" class="hidden w-full md:block">
         <app-chatbot />
       </div>
     </div>

@@ -1,8 +1,11 @@
 <main class="flex h-screen flex-col bg-base-300 text-base-content">
   <header class="flex shrink-0 items-center justify-between border-b border-white/10 bg-base-200 px-4 py-3">
     <div class="flex items-center gap-3">
-      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-info/15 text-lg">🛡️</span>
-      <p class="font-semibold">Asistente Prevención</p>
+      <span class="luma-orb h-9 w-9 text-base">✨</span>
+      <div>
+        <p class="font-semibold leading-tight">{{ luma.name }}</p>
+        <p class="text-xs text-base-content/55">{{ luma.role }}</p>
+      </div>
     </div>
     <a routerLink="/" class="btn btn-ghost btn-sm">← Volver</a>
   </header>

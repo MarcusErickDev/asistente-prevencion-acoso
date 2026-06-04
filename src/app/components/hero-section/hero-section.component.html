@@ -1,20 +1,21 @@
 <section class="relative isolate">
-  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.22),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(99,102,241,0.2),transparent_32%)]"></div>
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.24),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(139,92,246,0.22),transparent_34%),radial-gradient(circle_at_center,rgba(251,191,36,0.08),transparent_28%)]"></div>
   <div class="section-container grid min-h-[88vh] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
     <div>
-      <div class="badge badge-info badge-outline mb-6">Proyecto educativo · Prevención · ODS 16</div>
+      <div class="badge badge-info badge-outline mb-6">Proyecto educativo · LUMA · ODS 16</div>
       <h1 class="max-w-5xl text-4xl font-extrabold tracking-tight text-base-content sm:text-5xl lg:text-6xl">
         Asistente Digital Inteligente para la Prevención del Acoso Infantil
       </h1>
       <p class="mt-6 max-w-3xl text-lg leading-8 text-base-content/75 sm:text-xl">
-        Herramienta educativa de orientación preventiva para padres, docentes, niñas, niños y adolescentes.
+        Con apoyo de LUMA, una guía digital educativa que ayuda a identificar señales de alerta,
+        prevenir riesgos y conocer pasos seguros ante situaciones de acoso o ciberacoso.
       </p>
       <div class="mt-9 flex flex-col gap-4 sm:flex-row">
         <a class="btn btn-info btn-lg" href="#asistente">
-          Probar asistente digital
+          Hablar con LUMA
         </a>
         <a class="btn btn-outline btn-lg" href="#talleres">
-          Ver talleres
+          Ver talleres digitales
         </a>
       </div>
     </div>
@@ -22,10 +23,10 @@
     <div class="glass-panel rounded-[2rem] p-6">
       <div class="rounded-[1.5rem] bg-base-200 p-6">
         <div class="flex items-center gap-3">
-          <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-info/15 text-2xl">🛡️</span>
+          <div class="luma-orb h-14 w-14 text-2xl">✨🛡️</div>
           <div>
-            <p class="font-semibold">Orientación preventiva</p>
-            <p class="text-sm text-base-content/60">Información clara para actuar a tiempo</p>
+            <p class="font-semibold">{{ luma.name }}</p>
+            <p class="text-sm text-base-content/60">{{ luma.role }}</p>
           </div>
         </div>
         <div class="mt-8 space-y-4">
@@ -33,11 +34,11 @@
             <p class="text-sm text-base-content/60">Pregunta ejemplo</p>
             <p class="mt-1 font-medium">¿Cómo puedo identificar señales de acoso?</p>
           </div>
-          <div class="ml-8 rounded-2xl bg-info p-4 text-info-content">
+          <div class="ml-8 rounded-2xl bg-gradient-to-br from-info to-cyan-400 p-4 text-info-content">
             <p class="font-medium">Busca cambios de conducta, aislamiento, miedo a asistir a la escuela o uso ansioso de dispositivos.</p>
           </div>
           <div class="rounded-2xl border border-warning/30 bg-warning/10 p-4 text-sm text-base-content/80">
-            En riesgo inmediato, contacta a un adulto de confianza o autoridad correspondiente.
+            {{ luma.phrase }} En riesgo inmediato, contacta a un adulto de confianza o autoridad correspondiente.
           </div>
         </div>
       </div>

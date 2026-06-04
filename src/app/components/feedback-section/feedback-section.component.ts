@@ -8,5 +8,5 @@ import { PROJECT_LINKS } from '../../shared/project-links';
   templateUrl: './feedback-section.component.html'
 })
 export class FeedbackSectionComponent {
-  readonly feedbackLink = PROJECT_LINKS.feedback;
+  readonly feedbackLink = PROJECT_LINKS.FEEDBACK_FORM_URL;
 }
