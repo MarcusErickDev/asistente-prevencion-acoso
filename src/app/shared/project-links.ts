@@ -1,5 +1,5 @@
 export const ASSISTANT_URL = '/asistente';
-export const FEEDBACK_FORM_URL = '';
+export const FEEDBACK_FORM_URL = 'https://tally.so/r/aQz4vv';
 export const VIDEO_1_URL = '';
 export const VIDEO_2_URL = '';
 export const VIDEO_3_URL = '';

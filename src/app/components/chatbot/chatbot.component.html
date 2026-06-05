@@ -67,6 +67,7 @@
       <button
         type="button"
         (click)="restartConversation()"
+        [disabled]="isBotTyping || isLoading"
         class="btn btn-ghost btn-xs text-base-content/50 hover:text-base-content"
         title="Reiniciar conversación"
       >
@@ -81,6 +82,7 @@
       <button
         type="button"
         (click)="finalize()"
+        [disabled]="isBotTyping || isLoading"
         class="btn btn-ghost btn-xs text-base-content/50 hover:text-info"
         title="Finalizar y dar retroalimentación"
       >
@@ -116,6 +118,20 @@
       }
     }
 
+    @if (isBotTyping) {
+      <div class="flex justify-start">
+        <div class="flex items-start gap-2 max-w-[88%]">
+          <span class="luma-orb mt-0.5 h-6 w-6 shrink-0 text-[10px]">✨</span>
+          <div class="rounded-2xl rounded-tl-sm bg-base-100 px-4 py-3 text-sm text-base-content shadow-sm">
+            <div class="flex items-center gap-2 text-base-content/70">
+              <span>✨</span>
+              <span class="loading loading-dots loading-sm text-info"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
     <!-- Indicador de carga (solo en modo IA) -->
     @if (isLoading) {
       <div class="flex justify-start">
@@ -143,6 +159,7 @@
           <button
             type="button"
             (click)="onButtonClick(btn)"
+            [disabled]="isBotTyping || isLoading"
             class="btn btn-sm rounded-xl transition-colors"
             [class]="btn.next === 'RESTART' || btn.next === 'AI_CONTINUE'
               ? 'btn-ghost text-base-content/60 hover:text-base-content border border-base-content/10'
@@ -164,7 +181,7 @@
             type="text"
             [(ngModel)]="inputText"
             (keydown)="onKeydown($event)"
-            [disabled]="isLoading"
+            [disabled]="isLoading || isBotTyping"
             placeholder="Escribe tu pregunta..."
             class="input input-bordered flex-1 bg-base-100 text-sm focus:border-info focus:outline-none h-10"
             maxlength="500"
@@ -172,7 +189,7 @@
           <button
             type="button"
             (click)="sendAiMessage()"
-            [disabled]="isLoading || !inputText.trim()"
+            [disabled]="isLoading || isBotTyping || !inputText.trim()"
             class="btn btn-info btn-square h-10 w-10 min-h-0"
             title="Enviar"
           >

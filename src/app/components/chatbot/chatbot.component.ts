@@ -1,4 +1,13 @@
-import { Component, ElementRef, Input, OnInit, ViewChild, inject, AfterViewChecked } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
@@ -24,13 +33,15 @@ interface ChatSizeOption {
   height: number;
 }
 
+const BOT_TYPING_DELAY_MS = 900;
+
 @Component({
   selector: 'app-chatbot',
   standalone: true,
   imports: [FormsModule, MarkdownModule],
   templateUrl: './chatbot.component.html',
 })
-export class ChatbotComponent implements OnInit, AfterViewChecked {
+export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   private http = inject(HttpClient);
 
   @Input() fullHeight = false;
@@ -40,12 +51,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   mode: 'guided' | 'ai' = 'guided';
   inputText = '';
   isLoading = false;
+  isBotTyping = false;
   isFullscreenOpen = false;
   selectedSize: ChatSize = 'medium';
 
   private userProfile: UserProfile | null = null;
   private aiMessages: ApiMessage[] = [];
   private shouldScroll = false;
+  private typingTimeoutId: ReturnType<typeof setTimeout> | null = null;
+  private scrollFrameId: number | null = null;
 
   readonly sizeOptions: ChatSizeOption[] = [
     { id: 'small', label: 'Chico', height: 300 },
@@ -69,12 +83,19 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     if (this.shouldScroll) {
-      this.scrollToBottom();
       this.shouldScroll = false;
+      this.scheduleScrollToBottom();
     }
   }
 
+  ngOnDestroy(): void {
+    this.clearTypingTimeout();
+    this.clearScrollFrame();
+  }
+
   onButtonClick(button: FlowButton): void {
+    if (this.isBotTyping || this.isLoading) return;
+
     const next = button.next;
 
     // Open external URL without changing conversation state
@@ -101,14 +122,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
 
     if (next === 'RESTART') {
-      this.restart();
+      this.resetConversationState();
+      this.queueFlowResponse('welcome');
       return;
     }
 
     if (next === 'AI_MODE') {
       this.mode = 'ai';
       this.aiMessages = [];
-      this.loadFlow('ai-intro');
+      this.queueFlowResponse('ai-intro');
       return;
     }
 
@@ -117,12 +139,12 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.mode = 'guided';
       this.aiMessages = [];
     }
-    this.loadFlow(next as FlowId);
+    this.queueFlowResponse(next as FlowId);
   }
 
   sendAiMessage(): void {
     const text = this.inputText.trim();
-    if (!text || this.isLoading) return;
+    if (!text || this.isLoading || this.isBotTyping) return;
 
     this.history.push({ role: 'user', text });
     this.aiMessages.push({ role: 'user', content: text });
@@ -172,15 +194,19 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   finalize(): void {
+    if (this.isBotTyping || this.isLoading) return;
+
     if (this.mode === 'ai') {
       this.mode = 'guided';
       this.aiMessages = [];
     }
     this.currentButtons = [];
-    this.loadFlow('feedback');
+    this.queueFlowResponse('feedback');
   }
 
   restartConversation(): void {
+    if (this.isBotTyping || this.isLoading) return;
+
     this.restart();
   }
 
@@ -205,15 +231,60 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.shouldScroll = true;
   }
 
+  private queueFlowResponse(flowId: FlowId): void {
+    this.clearTypingTimeout();
+    this.isBotTyping = true;
+    this.shouldScroll = true;
+
+    this.typingTimeoutId = setTimeout(() => {
+      this.loadFlow(flowId);
+      this.isBotTyping = false;
+      this.typingTimeoutId = null;
+      this.shouldScroll = true;
+    }, BOT_TYPING_DELAY_MS);
+  }
+
   private restart(): void {
     this.history = [];
+    this.resetConversationState();
+    this.loadFlow('welcome');
+  }
+
+  private resetConversationState(): void {
+    this.clearTypingTimeout();
     this.currentButtons = [];
     this.mode = 'guided';
     this.userProfile = null;
     this.aiMessages = [];
     this.inputText = '';
     this.isLoading = false;
-    this.loadFlow('welcome');
+    this.isBotTyping = false;
+  }
+
+  private clearTypingTimeout(): void {
+    if (this.typingTimeoutId) {
+      clearTimeout(this.typingTimeoutId);
+      this.typingTimeoutId = null;
+    }
+  }
+
+  private scheduleScrollToBottom(): void {
+    this.clearScrollFrame();
+
+    this.scrollFrameId = requestAnimationFrame(() => {
+      this.scrollToBottom();
+      this.scrollFrameId = requestAnimationFrame(() => {
+        this.scrollToBottom();
+        this.scrollFrameId = null;
+      });
+    });
+  }
+
+  private clearScrollFrame(): void {
+    if (this.scrollFrameId !== null) {
+      cancelAnimationFrame(this.scrollFrameId);
+      this.scrollFrameId = null;
+    }
   }
 
   private get currentSize(): ChatSizeOption {
