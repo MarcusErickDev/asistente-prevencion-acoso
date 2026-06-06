@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { PROBLEM_VIDEO_URL } from '../../shared/project-links';
+import { YoutubeEmbedComponent } from '../youtube-embed/youtube-embed.component';
+
 const IMPACT_STATS = [
   {
     number: '7 de cada 10',
@@ -22,8 +25,10 @@ const IMPACT_STATS = [
 @Component({
   selector: 'app-impact-section',
   standalone: true,
+  imports: [YoutubeEmbedComponent],
   templateUrl: './impact-section.component.html',
 })
 export class ImpactSectionComponent {
   readonly stats = IMPACT_STATS;
+  readonly problemVideoUrl = PROBLEM_VIDEO_URL;
 }

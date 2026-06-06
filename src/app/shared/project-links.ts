@@ -1,13 +1,15 @@
 export const ASSISTANT_URL = '/asistente';
 export const FEEDBACK_FORM_URL = 'https://tally.so/r/aQz4vv';
-export const VIDEO_1_URL = '';
-export const VIDEO_2_URL = '';
-export const VIDEO_3_URL = '';
+export const PROBLEM_VIDEO_URL = 'https://www.youtube.com/embed/wSe2UrEDHNw?si=IPLOG19CEMztUIyC';
+export const VIDEO_1_URL = 'https://www.youtube.com/embed/mmbdxNExpdo?si=J4Tz7TfYaY5wo36q';
+export const VIDEO_2_URL = 'https://www.youtube.com/embed/jIfkEoK3Yyo?si=I8ZoI85W9PSulIT0';
+export const VIDEO_3_URL = 'https://www.youtube.com/embed/MSZa5TXYmTQ?si=gzJB6dZ-M-A6h__K';
 export const LUMA_AVATAR_PATH = 'assets/luma-avatar.png';
 
 export const PROJECT_LINKS = {
   ASSISTANT_URL,
   FEEDBACK_FORM_URL,
+  PROBLEM_VIDEO_URL,
   VIDEO_1_URL,
   VIDEO_2_URL,
   VIDEO_3_URL,
@@ -18,19 +20,19 @@ export const WORKSHOPS = [
   {
     title: '¿Qué es el acoso infantil y cómo identificarlo?',
     description:
-      'Conceptos esenciales, señales de alerta y formas de reconocer situaciones de riesgo en entornos escolares, familiares y comunitarios.',
+      'Conceptos básicos para reconocer señales de acoso infantil, comprender sus efectos y saber cuándo es necesario pedir apoyo.',
     videoUrl: PROJECT_LINKS.VIDEO_1_URL,
   },
   {
     title: 'Ciberacoso: riesgos digitales y prevención',
     description:
-      'Orientación sobre riesgos en plataformas digitales, privacidad, convivencia en línea y medidas preventivas para niñas, niños y adolescentes.',
+      'Explicación de los principales riesgos en entornos digitales y recomendaciones para prevenir situaciones de ciberacoso.',
     videoUrl: PROJECT_LINKS.VIDEO_2_URL,
   },
   {
     title: '¿Qué hacer si detectas una situación de acoso?',
     description:
-      'Pasos básicos para actuar con calma, documentar la situación, pedir ayuda y activar redes de apoyo responsables.',
+      'Orientación práctica sobre cómo actuar, documentar, buscar apoyo y canalizar una situación de riesgo de forma segura.',
     videoUrl: PROJECT_LINKS.VIDEO_3_URL,
   }
 ] as const;
